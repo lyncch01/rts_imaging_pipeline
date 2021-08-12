@@ -1,4 +1,4 @@
-#########################################      SETUP PROFILE ON PAWSEY      #########################################
+######      SETUP PROFILE ON PAWSEY      
 
 First you'll have to setup your profile and bashrc files for running jobs on Garrawarla. My bashrc and profile scripts are uploaded as "bashrc-pawsey" and "profile-pawsey". The key environmental variables you need to set are the variables MWA_DIR, MWA_BEAM_FILE, and MWA_ASVO_API_KEY. The rest of them you shouldn't need to add. You should also module load/use the modules listed under Garrawarla in "profile-pawsey". 
 
@@ -8,7 +8,7 @@ For the MWA_DIR location you need to create a directory which has a subdirectory
 
 The MWA_ASVO_API_KEY is assigned to you when you make an account with the MWA ASVO website (https://asvo.mwatelescope.org/), you should be able to login using your uni-credentials. 
 
-#########################################      DOWNLOADING DATA TO Garrawarla      #########################################
+######      DOWNLOADING DATA TO Garrawarla    
 
 To download the data you should use the package 'gator' which is already installed on Garrawarla. More info on this package can be found here:
 
@@ -38,7 +38,7 @@ This will submit the jobs to the asvo to be downloaded and then when they are fi
 
 Downloading the data might take a while depending on how many other people are using the ASVO. You can check the status of your download jobs on the ASVO website under the 'My Jobs' tab.
 
-#########################################      SETUP FILES TO RUN THE RTS AND IMAGE DATA      #########################################
+######      SETUP FILES TO RUN THE RTS AND IMAGE DATA
 
 Once the data is downloaded it should show up in your MWA_DIR/data directory as a set of sub-directories (named using the observation IDs).
 
@@ -48,7 +48,6 @@ You'll also have to change the #SBATCH --array=0-2 variable in 'qsetup_nopeel.sh
 
 Finally you need to change the imaging parameters for wsclean to better suite the data you are imaging (cell size, imsize, iterations, etc.). 
 
-#########################################      RUNNING THE RTS      #########################################
-
+######      RUNNING THE RTS
 
 
