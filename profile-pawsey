@@ -1,0 +1,80 @@
+# Sample .profile for SuSE Linux
+# rewritten by Christian Steinruecken <cstein@suse.de>
+#
+# This file is read each time a login shell is started.
+# All other interactive shells will only read .bashrc; this is particularly
+# important for language settings, see below.
+
+#test -z "$PROFILEREAD" && . /etc/profile || true
+
+# Most applications support several languages for their output.
+# To make use of this feature, simply uncomment one of the lines below or
+# add your own one (see /usr/share/locale/locale.alias for more codes)
+# This overwrites the system default set in /etc/sysconfig/language
+# in the variable RC_LANG.
+#
+#export LANG=de_DE.UTF-8	# uncomment this line for German output
+#export LANG=fr_FR.UTF-8	# uncomment this line for French output
+#export LANG=es_ES.UTF-8	# uncomment this line for Spanish output
+
+
+# Some people don't like fortune. If you uncomment the following lines,
+# you will have a fortune each time you log in ;-)
+
+#if [ -x /usr/bin/fortune ] ; then
+#    echo
+#    /usr/bin/fortune
+#    echo
+#fi
+
+#if [[ $LOADEDMODULES == *"PrgEnv-cray"* ]] 
+#then
+#    module swap PrgEnv-cray PrgEnv-gnu
+#fi
+
+#source ~/.profile.local
+
+
+
+#export MWA_DIR=/astro/mwasci/clynch/Compact/
+export MWA_DIR=/astro/mwaeor/MWA/
+export MYSCRATCH=/scratch/mwaeor/clynch
+export PAWSEY_PROJECT='mwaeor'
+export MYGROUP=/group/mwaeor/clynch
+
+export MWA_BEAM_FILE=/pawsey/mwa/mwa_full_embedded_element_pattern.h5
+
+export SRCDIR=/astro/mwaeor/MWA/chips/src
+export BINDIR=/astro/mwaeor/MWA/chips/bin
+export OUTPUTDIR=/astro/mwaeor/clynch/chips/output
+
+#export ASVO_USER='clynch'
+#export ASVO_PASS='cHarL13ParK3r!'
+
+export MWA_ASVO_API_KEY=7e765bd7-06a9-423a-bf8f-af6025026e53
+
+umask 002
+
+if [[ $PAWSEY_CLUSTER == "mwa" ]]; then
+    PAWSEY=garrawarla
+fi
+
+if [[ "${PAWSEY}" == "garrawarla" ]]; then
+    source /usr/share/lmod/7.6.1/init/zsh
+    module use /pawsey/mwa/software/python3/modulefiles
+    module use /astro/mwaeor/cjordan/software/modulefiles
+    export PUMA_DIR=/astro/mwaeor/clynch/PUMA
+    export PATH=$PUMA_DIR/scripts:$PATH
+    export SINGULARITY_CACHEDIR=/astro/mwaeor/clynch/singularity_cache
+fi 
+
+export UCX_MEMTYPE_CACHE=n
+
+if [[ "$PAWSEY_CLUSTER" == "zeus" ]]
+then
+	module use /group/mwa/software/modulefiles
+	export PUMA_DIR=/astro/mwaeor/clynch/PUMA
+        export PATH=$PUMA_DIR/scripts:$PATH
+	export SINGULARITY_CACHEDIR=/astro/mwaeor/clynch/singularity_cache
+
+fi
